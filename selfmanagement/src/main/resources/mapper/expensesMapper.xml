@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zq.springboot.dao.ExpensesDao">
+	<select id="getExpensesInfoById" resultType="com.zq.springboot.commontypes.ExpensesInfo" parameterType="String">
+        select * from expensesTable where id = #{id}
+    </select>
+    <select id="getExpensesList" parameterType="map" resultType="com.zq.springboot.commontypes.ExpensesInfo">
+    	select * from expensesTable where expensesDate like CONCAT(CONCAT('%',#{expensesDate},'%'))
+    </select>
+    <insert id="addExpenses" parameterType="com.zq.springboot.commontypes.ExpensesInfo">
+    	insert into expensesTable values (#{id},#{expensesName},#{expensesAmount},#{familyId},#{expensesPeopleId},#{expensesPeople},#{expensesDate},#{expensesType},#{payType},#{remarks})
+    </insert>
+</mapper>

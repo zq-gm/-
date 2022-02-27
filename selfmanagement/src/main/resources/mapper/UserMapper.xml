@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zq.springboot.dao.UserDao">
+	<resultMap id ="UserInfoMap" type="com.zq.springboot.commontypes.UserInfo">
+        <result column="username" property="username"/>
+        <result column="sex" property="sex"/>
+    </resultMap>
+	<select id="getUser" parameterType="String" resultMap="UserInfoMap">
+        select * from usertable where username = #{userName}
+    </select>
+    <select id="userLogin" parameterType="com.zq.springboot.commontypes.UserInfo" resultMap="UserInfoMap">
+    	select * from usertable where username = #{username} and password = #{password}
+    </select>
+    <insert id="userRegist" parameterType="com.zq.springboot.commontypes.UserInfo">
+    	insert into usertable values (#{userId},#{username},#{password},#{name},#{age},#{sex},#{birthDate},#{idCardNum},#{phoneNum},#{email},#{userMotto},#{teamIds},#{menuIds},#{ruleIds})
+    </insert>
+</mapper>
